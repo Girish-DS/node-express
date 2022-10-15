@@ -9,7 +9,7 @@ module.exports = class Admin {
 
     static save(data) {
         return db.query(
-            'INSERT INTO admin (name, email, password) VALUES (?, ?, ?)', [data.name, data.email, data.password]
+            'INSERT INTO admin (name, email, password, isDeleted) VALUES (?, ?, ?, ?)', [data.name, data.email, data.password, 0]
         );
     }
 
