@@ -1,8 +1,5 @@
-// module.exports = function(db, authRoute, jwt) {
 const express = require('express');
-// const { body } = require('express-validator');
 const router = express.Router();
-// const Admin = require('../models/admin');
 const authController = require('../controllers/auth-controller');
 
 // router.post('/signup', [
@@ -17,7 +14,7 @@ const authController = require('../controllers/auth-controller');
 
 router.post('/signup', authController.signup);
 router.get('/login', authController.login);
-router.post('/newPassword', authController.newPassword);
-router.post('/forgetpassword', authController.forgetPassword);
+router.post('/reset-Password', authController.resetPassword);
+router.post('/forget-password', authController.forgetPassword);
+
 module.exports = router;
-// }
