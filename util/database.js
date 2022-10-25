@@ -1,11 +1,11 @@
 const mysql = require('mysql');
-const config = require('../config/config.json');
+const db = require('./config/config.json').db;
 
 const pool = mysql.createConnection({
-    host: config.host,
-    user: config.user,
-    database: config.database,
-    password: config.password,
+    host: db.host,
+    user: db.user,
+    database: db.database,
+    password: db.password,
     port: 3306
 })
 
