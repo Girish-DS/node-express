@@ -1,4 +1,6 @@
+const { Model } = require('objection');
 const db = require('../../util/database');
+const adminModel = require('../models/adminSchema');
 
 module.exports = class adminService {
 
@@ -9,6 +11,9 @@ module.exports = class adminService {
     }
 
     async find(email) {
+
+        return await Model.query().first().where({ email: email});
+
         return new Promise((res, rej) => {
             const query = 'SELECT * FROM admin WHERE email = ?';
             const data = email;
