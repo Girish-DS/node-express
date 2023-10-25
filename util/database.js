@@ -1,19 +1,43 @@
 const mysql = require('mysql');
-const db = require('./config/config.json').db;
+// const Model = require('objection');
+// const knex = require('knex');
+const { HOST, USER, DATABASE, PASSWORD, PORT } = require('dotenv').config();
 
-const pool = mysql.createConnection({
-    host: db.host,
-    user: db.user,
-    database: db.database,
-    password: db.password,
-    port: 3306
+const db = mysql.createConnection({
+    host: HOST,
+    user: USER,
+    database: DATABASE,
+    password: PASSWORD,
+    port: PORT
 })
 
-pool.connect((err) => {
-    if(err)
-        throw err
-    else 
-        console.log("DB Connected..")      
-})
+// const db = knex({
+//   client: 'mysql',
+//   connection: {
+//     host: HOST,
+//     port: PORT,
+//     user: USER,
+//     password: PASSWORD,
+//     database: DATABASE
+//   }
+// });
 
-module.exports = pool;
+// const knex = Knex({
+//     client: 'sqlite3',
+//     useNullAsDefault: true,
+//     connection: {
+//       filename: 'example.db'
+//     }
+//   });
+
+// Pass the Knex connection to Objection
+// Model.knex(db);
+
+// knex.connect((err) => {
+//   if (err)
+//     throw err
+//   else
+//     console.log("DB Connected..")
+// })
+
+module.exports = db;

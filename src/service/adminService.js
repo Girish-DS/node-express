@@ -1,6 +1,6 @@
-const { Model } = require('objection');
+// const { Model } = require('objection');
 const db = require('../../util/database');
-const adminModel = require('../models/adminSchema');
+// const adminModel = require('../models/adminSchema');
 
 module.exports = class adminService {
 
@@ -12,7 +12,7 @@ module.exports = class adminService {
 
     async find(email) {
 
-        return await Model.query().first().where({ email: email});
+        // return await Model.query().first().where({ email: email });
 
         return new Promise((res, rej) => {
             const query = 'SELECT * FROM admin WHERE email = ?';
@@ -22,16 +22,16 @@ module.exports = class adminService {
                 if (result.length === 0) rej(result);
                 res(result);
             });
-        }); 
+        });
     }
 
     async findById(id) {
         return new Promise((res, rej) => {
             const query = 'SELECT * FROM admin WHERE id = ?';
             const data = id;
-                db.query(query, [data], (err, result) => {
+            db.query(query, [data], (err, result) => {
                 if (err) rej(err);
-                if(result.length === 0) rej(result);
+                if (result.length === 0) rej(result);
                 res(result);
             });
         });
@@ -39,9 +39,9 @@ module.exports = class adminService {
 
     async updatePassword(id, pwd) {
         return new Promise((res, rej) => {
-            const query =   'UPDATE admin SET password = ? WHERE id = ?';
+            const query = 'UPDATE admin SET password = ? WHERE id = ?';
             const data = [pwd, id];
-            db.query( query, data, (err, result) => {
+            db.query(query, data, (err, result) => {
                 if (err) rej(err);
                 if (result.changedRows === 0) rej(result);
                 res(result.changedRows === 1 ? true : false);
@@ -53,9 +53,9 @@ module.exports = class adminService {
         return new Promise((resolve, reject) => {
             db.query({
                 sql: 'SELECT * FROM admin'
-            }, function(err, data) {
-                if(err) reject(err);
-                if(data.length === 0) reject(data);
+            }, function (err, data) {
+                if (err) reject(err);
+                if (data.length === 0) reject(data);
                 resolve(data);
             });
         });
